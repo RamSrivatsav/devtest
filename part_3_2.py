@@ -19,10 +19,28 @@ infectors = np.array([10, 19, 35]) # people who can infect other people
 
 infected = np.zeros_like(infectors) # number of people who got infected
 
-for infectee_idx in range(3):
-    for infector_idx in range(3):
-        infect_factor = infect_matrix[infector_idx, infectee_idx]
-        num_infectors = infectors[infector_idx]
-        infected[infectee_idx] += infect_factor * num_infectors
+
+"""
+Previous code:
+The previous code has a bug, Its internally rounding off the infect_factor * num_infectors
+product before calculating the infected values.
+"""
+# for infectee_idx in range(3):
+#     for infector_idx in range(3):
+#         infect_factor = infect_matrix[infector_idx, infectee_idx]
+#         num_infectors = infectors[infector_idx]
+#         infected[infectee_idx] += infect_factor * num_infectors
+
+# print("Number of people infected (home, work, school):", infected)
+
+
+"""
+Modified Code:
+This code performs the same operation without rounding off the 
+infect_factor * num_infectors product in a single step.
+
+Please uncomment the previous code to observe the difference.
+"""
+infected = np.matmul(infectors, infect_matrix)
 
 print("Number of people infected (home, work, school):", infected)

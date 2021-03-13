@@ -42,7 +42,18 @@ results[0] = INITIAL_CONDITIONS
 for t_idx, t in enumerate(times):
     if t_idx == 0:
         continue
+    
 
     # Solve the equation here, filling out `results`
+    else:
+        results[t_idx] = results[t_idx-1] + get_derivatives(results[t_idx-1], t)
 
 # Plot the results as a function of time for S, I, R respectively
+plt.plot(times, results)
+plt.xlabel('time')
+plt.ylabel('S, I, R')
+plt.title('S, I, R v/s time')
+plt.legend(["S", "I", "R"])
+
+# Saving the plot
+plt.savefig('part_5.png', dpi=300, bbox_inches='tight')
