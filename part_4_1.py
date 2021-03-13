@@ -27,3 +27,16 @@ def merge_dicts(src: dict, dest: dict):
 
 def test_merge_dicts():
     """Your code here"""
+    
+    """
+    initialising test variables
+    """
+    src1 = {"it1":"asd", "it1":"asd"}
+    src2 = {}
+    dest = {}
+    
+    """
+    test routine.
+    """
+    assert not merge_dicts(src2, dest) != {}
+    assert merge_dicts(src1, dest) != {}
